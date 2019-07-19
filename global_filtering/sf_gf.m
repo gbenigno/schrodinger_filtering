@@ -50,7 +50,7 @@ for ch = ch_vec
             [Nh_SF, mse] = select_NhSF(EEG_raw, slicesPerSubts, a, trigs, EEG_input_for_gf.data(ch,:), globfilt_y_scsa{ch});
             
             if Nh_SF < 60
-                % find closest Nh to 115
+                % find closest Nh to 90
                 Nh_vec = globfilt_h_and_Nh{ch}(:,2);
                 Nh_diff = abs(Nh_vec - 90);
                 Nh_SF = find(Nh_diff==min(Nh_diff));
