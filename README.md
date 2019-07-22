@@ -25,7 +25,9 @@ EEG_aas_spikeless is EEG_fmrib_aas following the de-spiking step of Schrödinger
 EEG_sf_with_ds is EEG_aas_spikeless following the global filtering step of Schrodinger filtering. globfilt_w_ds is a structure array containing various metadata from the global filtering step. In particular, it contains the fields y_scsa, h_and_Nh, h_and_Nh_SF, and mse. y_scsa is a 30x1 cell array, with each cell corresponding to one EEG channel. Each cell is size MxNh*, where M is the number of time points in the first sub-timeseries and Nh* is the number of Schrodinger components for full input signal reconstruction. Each column of each cell is a SCSA reconstruction using an Nh-value equal to the index of the column. h_and_Nh is also a 30x1 cell array. Each cell is a Nh*x2 matrix, where the first column is the h-value and the second column is the corresponding Nh_value. h_and_Nh_SF is a 30x2 matrix, with each row representing one of the channels and columns 1 and 2 representing h_SF and the corresponding value of Nh_SF, respectively. mse is a 30x1 cell array with each cell being a vector of length Nh*. The values of each entry of these vectors are the mean squared error Delta(Nh) and the index is the value of Nh.
 
 EEG_sf_without_ds is EEG_fmrib_aas following the global filtering step of Schrödinger filtering. That is, it skips de-spiking. globfilt_without_ds is the corresponding structure array containing the metadata as described by globfilt_w_ds above but pertaining to EEG_sf_without_ds.
-
+\
+\
+\
 
 
 RUNNING CODE
