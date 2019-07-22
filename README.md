@@ -2,7 +2,7 @@
 
 Schrödinger filtering is a novel processing technique for removing gradient artifact from EEG data that was collected in the presence of fMRI. It is based on semi-classical signal analysis (SCSA) (https://doi.org/10.1007/s00498-012-0091-1), which decomposes a signal according to its energy using the discrete spectrum of the semi-classical Schrödinger operator. Schrödinger filtering consists of two steps: (1) de-spiking, in which data spikes of the input time-domain dataset y_aas (raw dataset processed by average artifact subtraction) corresponding to residual gradient-related spikes are removed using SCSA; and (2) global filtering, in which SCSA is used to remove signal components from the timeseries of global residual artifact as well as to denoise the signal.
 
-All code for Schrodinger filtering was written in MATLAB.
+All code for Schrodinger filtering was written in MATLAB by Gabriel Benigno except where stated otherwise.
 
 Please reference the URL to this repository if you use its code in any capacity.
 
