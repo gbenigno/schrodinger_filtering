@@ -7,7 +7,7 @@ All code for Schrodinger filtering was written in MATLAB.
 Please reference the URL to this repository if you use its code in any capacity.
 
 
-DATA AVAILABILITY
+======DATA AVAILABILITY======
 
 The data used (in MATLAB .mat format) is available at https://www.dropbox.com/sh/hb7ivwjtkn5rnml/AAA6Eo7s5CdZK0AZdyAIuuS6a?dl=0.
 
@@ -26,6 +26,6 @@ EEG_sf_with_ds is EEG_aas_spikeless following the global filtering step of Schro
 EEG_sf_without_ds is EEG_fmrib_aas following the global filtering step of Schrödinger filtering. That is, it skips de-spiking. globfilt_without_ds is the corresponding structure array containing the metadata as described by globfilt_w_ds above but pertaining to EEG_sf_without_ds.
 
 
-RUNNING CODE
+======RUNNING CODE======
 
-Start at sf_master_script.m. Make sure to update the working directory absolute path (variable called wd) and that the datasets are found wd. Also make sure that the path for all code is added.
+Start at sf_master_script.m. Make sure to update the working directory absolute path (variable called wd) and that the datasets are found wd. Also make sure that the paths for all code are added.
