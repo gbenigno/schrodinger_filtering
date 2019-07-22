@@ -28,4 +28,4 @@ EEG_sf_without_ds is EEG_fmrib_aas following the global filtering step of Schrö
 
 ======RUNNING CODE======
 
-Start at sf_master_script.m. Make sure to update the working directory absolute path (variable called wd) and that the datasets are found wd. Also make sure that the paths for all code are added.
+Start at sf_master_script.m. Make sure to update the working directory absolute path (variable called wd) and that the datasets are found at wd. Also make sure that the paths for all code are added.
