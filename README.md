@@ -1,31 +1,29 @@
-# schrodinger_filtering
+# Schrödinger filtering
 
-Schrödinger filtering is a novel processing technique for removing gradient artifact from EEG data that was collected in the presence of fMRI. It is based on semi-classical signal analysis (SCSA) (https://doi.org/10.1007/s00498-012-0091-1), which decomposes a signal according to its energy using the discrete spectrum of the semi-classical Schrödinger operator. Schrödinger filtering consists of two steps: (1) de-spiking, in which data spikes of the input time-domain dataset following average artifact subtraction corresponding to residual gradient-related spikes are removed using SCSA; and (2) global filtering, in which SCSA is used to remove signal components from the de-spiked signal representing global residual artifact as well as to denoise the signal.
+**Schrödinger filtering** is a new signal processing technique based on **semi-classical signal analysis (SCSA)** (https://doi.org/10.1007/s00498-012-0091-1), which treats an input signal as an attractive potential in the one-dimensional semi-classical Schrödinger operator. The discrete spectrum of the operator is used for the signal's analysis. The basis functions of this eigenvalue decomposition are localized and pulse-shaped. Individually, these components naturally suit needs such as peak detection or removal. Together, they reconstruct the input with a preference for energy-dense input peaks. Based on the value of a single decomposition parameter, the user has control over how much of the energy-sparse parts of the input (*e.g.*, noise) are captured in the reconstruction. Schrödinger filtering is the term describing any filtering use of SCSA.
 
-All code for Schrodinger filtering was written in MATLAB by Gabriel Benigno except where stated otherwise.
+Here, Schrödinger filtering has been used for gradient artifact removal from **EEG** data acquired in the presence of **fMRI**. Schrödinger filtering handles the data after processing by **average artifact subtraction** (https://doi.org/10.1006/nimg.2000.0599), which contains residual artifact with time-domain spikes.
 
-Please reference the URL to this repository if you use its code in any capacity.
+## Author
 
+All code in this repository was written in **MATLAB** by Gabriel Benigno except where stated otherwise.
 
-======DATA AVAILABILITY======
+## Citing this work
 
-The data used (in MATLAB .mat format) is available at https://www.dropbox.com/sh/hb7ivwjtkn5rnml/AAA6Eo7s5CdZK0AZdyAIuuS6a?dl=0.
+Please cite the following reference if you use this repository's code in any capacity:
 
-The raw dataset EEG_fmrib is publicly available at https://fsl.fmrib.ox.ac.uk/eeglab/fmribplugin/#install.
+...
 
-The post-AAS dataset EEG_fmrib_aas was obtained by processing EEG_fmrib using the FACET toolbox (https://github.com/hansiglaser/facet). In particular, only the steps up to and including 'CalcAvgArt' were performed. See CleanEx1.m of the FACET repository for details.
+## Repo contents
 
-The dataset (EEG_fmrib_aas_pca_lpf150Hz_anc) with the full FASTR variant pipeline (i.e., AAS, OBS, low-pass filter at 150 Hz, and ANC) applied was obtained by processing EEG_fmrib using the FACET toolbox (https://github.com/hansiglaser/facet). In particular, all steps from the CleanEx1.m script in the FACET repository were performed, but with the low-pass filter applied at 150 Hz rather than 70 Hz.
+The main script is `schrodingerFiltering.m`. The `simulation` folder contains the custom scripts used in the simulations of the Schrödinger filtering paper. The `external` folder contains the version-specific dependencies.
 
-The dataset (EEG_fmrib_aas_lpf150Hz_ica) with the full ICA pipeline applied to it is also found as a MATLAB structure array called ica.mat. The fields of this structure array are y, A, W, x, Z, and xc. y is the pre-ICA, post-AAS dataset (EEG channels 1-30; excluding EMG and ECG channels). A is the mixing matrix. W is the unmixing matrix. x is the matrix of independent components. Z is the diagonal matrix containing a diagonal entry of 1 for ICs marked artifact and 0 for ICs marked signal. xc is y following artifact IC subtraction. ICA was performed using FastICA on MATLAB (https://research.ics.aalto.fi/ica/fastica/).
+## Data availability
 
-EEG_aas_spikeless is EEG_fmrib_aas following the de-spiking step of Schrödinger filtering.
+The data used in the Schrödinger filtering paper comprised a freely available online dataset available at https://fsl.fmrib.ox.ac.uk/eeglab/fmribplugin/#install, and simulated data available at .... If the download links are inadvertently not working, the author can provide them via email (gbenigno@uwo.ca).
 
-EEG_sf_with_ds is EEG_aas_spikeless following the global filtering step of Schrodinger filtering. globfilt_w_ds is a structure array containing various metadata from the global filtering step. In particular, it contains the fields y_scsa, h_and_Nh, h_and_Nh_SF, and mse. y_scsa is a 30x1 cell array, with each cell corresponding to one EEG channel. Each cell is size MxNh*, where M is the number of time points in the first sub-timeseries and Nh* is the number of Schrodinger components for full input signal reconstruction. Each column of each cell is a SCSA reconstruction using an Nh-value equal to the index of the column. h_and_Nh is also a 30x1 cell array. Each cell is a Nh*x2 matrix, where the first column is the h-value and the second column is the corresponding Nh_value. h_and_Nh_SF is a 30x2 matrix, with each row representing one of the channels and columns 1 and 2 representing h_SF and the corresponding value of Nh_SF, respectively. mse is a 30x1 cell array with each cell being a vector of length Nh*. The values of each entry of these vectors are the mean squared error Delta(Nh) and the index is the value of Nh.
+## Future improvements
 
-EEG_sf_without_ds is EEG_fmrib_aas following the global filtering step of Schrödinger filtering. That is, it skips de-spiking. globfilt_without_ds is the corresponding structure array containing the metadata as described by globfilt_w_ds above but pertaining to EEG_sf_without_ds.
+1. This code was written with universality in mind. That is, it attempts to support a large subset of all possible datasets. If, as it is used on an increasing number of datasets, a need for greater generality becomes apparent, do not hesitate to contact the author (gbenigno@uwo.ca), and he will swiftly update the code accordingly. Also, feel free to collaborate by forking the repo.
 
-
-======RUNNING CODE======
-
-Start at sf_master_script.m. Make sure to update the working directory absolute path (variable called wd) and that the datasets are found at wd. Also make sure that the paths for all code are added.
+2. There are plans to convert all toolbox functions into the C language, beginning with the least efficient ones, while keeping the MATLAB wrapper for convenience. Thus, near-future improvements on this front can be expected. Feel free to contribute to this process through GitHub, or to make specific requests to the author (gbenigno@uwo.ca).
