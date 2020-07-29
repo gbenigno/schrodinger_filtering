@@ -1,25 +1,4 @@
 function ysf = schrodingerFiltering_control(y)
-% MIT License
-% 
-% Copyright (c) 2020 Gabriel Benigno
-% 
-% Permission is hereby granted, free of charge, to any person obtaining a copy
-% of this software and associated documentation files (the "Software"), to deal
-% in the Software without restriction, including without limitation the rights
-% to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-% copies of the Software, and to permit persons to whom the Software is
-% furnished to do so, subject to the following conditions:
-% 
-% The above copyright notice and this permission notice shall be included in all
-% copies or substantial portions of the Software.
-% 
-% THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-% IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-% FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-% AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-% LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-% OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-% SOFTWARE.
 
 % init
 y=y(:);
@@ -52,7 +31,7 @@ while any(islocalmin(f)) && any(islocalmin(ksdensity(kurtosis(ycp))))
         if length(locs) == 2 
             [~,I] = max(ycp(:,spike_components));
             pair = [find(locs(1) < I & locs(2) > I); ii];
-            note = [note, pair];
+            note = [note; pair];
             wndw = zeros(size(yp));
             tmp = sum(ycp(:,pair),2);
             wndw(tmp>0.01*max(tmp)) = 1;
@@ -63,7 +42,7 @@ while any(islocalmin(f)) && any(islocalmin(ksdensity(kurtosis(ycp))))
         end
     end
     
-    ind = setdiff(spike_components, note(:));
+    ind = setdiff(spike_components, note);
     for ii = ind(1) : ind(end)
         wndw = zeros(size(yp));
         wndw(ycp(:,ii)>0.01*max(ycp(:,ii))) = 1;
@@ -97,7 +76,7 @@ while any(islocalmin(f)) && any(islocalmin(ksdensity(kurtosis(ycm))))
         if length(locs) == 2 
             [~,I] = max(ycm(:,spike_components));
             pair = [find(locs(1) < I & locs(2) > I); ii];
-            note = [note, pair];
+            note = [note; pair];
             wndw = zeros(size(ym));
             tmp = sum(ycm(:,pair),2);
             wndw(tmp>0.01*max(tmp)) = 1;
@@ -108,7 +87,7 @@ while any(islocalmin(f)) && any(islocalmin(ksdensity(kurtosis(ycm))))
         end
     end
     
-    ind = setdiff(spike_components, note(:));
+    ind = setdiff(spike_components, note);
     for ii = ind(1) : ind(end)
         wndw = zeros(size(ym));
         wndw(ycm(:,ii)>0.01*max(ycm(:,ii))) = 1;
