@@ -1,4 +1,4 @@
-function ysf = schrodingerFiltering_control(y, spks)
+function ysf = schrodingerFiltering_control(y)
 % MIT License
 % 
 % Copyright (c) 2020 Gabriel Benigno
@@ -30,8 +30,8 @@ ysf=y;
 % rectify
 yp = y; yp(yp<0) = 0; yp_orig = yp;
 ym = -y; ym(ym<0)=0; ym_orig = ym;
-spks_p = spks; spks_p(spks_p<0) = 0;
-spks_m = -spks; spks_m(spks_m<0) = 0;
+% spks_p = spks; spks_p(spks_p<0) = 0;
+% spks_m = -spks; spks_m(spks_m<0) = 0;
 
 % smooth (positive)
 h = fminbnd(   @(h) -kurtosis( SCSA(yp,h) ),  lb, ub  );
