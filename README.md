@@ -10,7 +10,7 @@ All code in this repository was written in **MATLAB** by **Gabriel Benigno** exc
 
 ## Citing this work
 
-Please cite the following reference if you use this repository's code in any capacity:
+Please cite the following article if you use this repository's code in any capacity:
 
 ...
 
