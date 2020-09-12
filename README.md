@@ -6,7 +6,7 @@ Here, Schrödinger filtering has been used for gradient artifact spike removal f
 
 ## Author
 
-All code in this repository was written in **MATLAB** by Gabriel Benigno except where stated otherwise.
+All code in this repository was written in **MATLAB** by **Gabriel Benigno** except where stated otherwise.
 
 ## Citing this work
 
