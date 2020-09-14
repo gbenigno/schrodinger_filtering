@@ -14,13 +14,9 @@ Please cite the following article if you use this repository's code in any capac
 
 ...
 
-## Repo contents
-
-The main script is `schrodingerFiltering.m`. The `simulation` folder contains the custom scripts used in the simulations of the Schrödinger filtering paper. The `external` folder contains the version-specific dependencies.
-
 ## Data availability
 
-The data used in the Schrödinger filtering paper comprised a freely available online dataset available at https://fsl.fmrib.ox.ac.uk/eeglab/fmribplugin/#tutorial, a dataset for which permission is required (https://doi.org/10.1101/253047), and simulated data. The real data are available in the `realdata` folder in csv files, which can be loaded in MATLAB using the `readmatrix` function. The first line of each csv file has details. This first line does not get loaded into MATLAB. The code used to generate the simulated data is provided in the `simulations` folder.
+The data used in the Schrödinger filtering paper comprised a freely available online dataset available at https://fsl.fmrib.ox.ac.uk/eeglab/fmribplugin/#tutorial, a dataset for which permission is required (https://doi.org/10.1101/253047), and simulated data. The freely available real data are available in the `realdata` folder in csv files, which can be loaded in MATLAB using the `readmatrix` function. The first line of each csv file has details. This first line does not get loaded into MATLAB. The code used to generate the simulated data is provided in the `simulations` folder.
 
 ## Future improvements
 
