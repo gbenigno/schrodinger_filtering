@@ -20,7 +20,7 @@ The main script is `schrodingerFiltering.m`. The `simulation` folder contains th
 
 ## Data availability
 
-The data used in the Schrödinger filtering paper comprised a freely available online dataset available at https://fsl.fmrib.ox.ac.uk/eeglab/fmribplugin/#install, and simulated data available at .... If the download links are inadvertently not working, the author can provide them via email (gbenigno@uwo.ca).
+The data used in the Schrödinger filtering paper comprised a freely available online dataset available at https://fsl.fmrib.ox.ac.uk/eeglab/fmribplugin/#tutorial, and simulated data available at .... If the download links are inadvertently not working, the author can provide them via email (gbenigno@uwo.ca).
 
 ## Future improvements
 
