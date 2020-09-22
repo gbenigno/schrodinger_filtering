@@ -1,0 +1,7 @@
+The data in the 'raw' directory are from the EEG struct provided at https://fsl.fmrib.ox.ac.uk/eeglab/fmribplugin/#tutorial. Data are given as individual mat files representing individual electrode channel timeseries, numbered accordingly. The data in the 'aas' directory are the raw data processed using the FACET (10.1186/1471-2202-14-138) toolbox (https://github.com/hansiglaser/facet), using the script CleanEx1.m from the FACET repo, but excluding PCA, lowpass filtering, and adaptive noise cancellation.
+
+Sampling rate 2048 Hz.
+
+Mains frequency 50 Hz.
+
+The trigs vector contains the trigger indices (samples) with one entry appended to represent the end of the last slice epoch. The indices are shifted to the left slightly.
