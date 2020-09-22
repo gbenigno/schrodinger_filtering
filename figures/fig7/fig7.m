@@ -26,6 +26,8 @@ for ii = 1:length(listing)
     sf_cell{ch} = sf;
 end
 sf = sf_cell;
+cd figures/fig7
+save('sf.mat','sf')
 clear sf_cell
 rmdir tmp s
 
