@@ -152,9 +152,6 @@ end
 sf = sf_mat;
 sf_rs = reshape(sf, [], Nsl, size(x,2), size(x,3));
 
-cd figures/fig8
-save('vars.mat')
-
 rmdir ../../tmp s
 
 %%
@@ -162,10 +159,10 @@ wd = nan(size(x));
 at = nan(size(x));
 mf = nan(size(x));
 
-sar_sf = nan(size(x));
-sar_wd = nan(size(x));
-sar_mf = nan(size(x));
-sar_at = nan(size(x));
+sar_sf = nan(Nsl, 3, 30);
+sar_wd = nan(Nsl, 3, 30);
+sar_mf = nan(Nsl, 3, 30);
+sar_at = nan(Nsl, 3, 30);
 
 for ch=1:30
     for ii=1:3
@@ -190,6 +187,9 @@ for ch = 1:30
         end
     end
 end
+%%
+cd figures/fig8
+save('vars.mat')
 
 %% high
 sar_wd_tmp = sar_wd(:,:,1); sar_wd_tmp = sar_wd_tmp(:);
@@ -201,7 +201,7 @@ scatter(sar_wd_tmp, sar_sf_tmp)
 hold on
 scatter(sar_at_tmp, sar_sf_tmp)
 scatter(sar_mf_tmp, sar_sf_tmp)
-plot(1:100, 1:100, '--k',  1:100, 4*(1:100), '--k','LineWidth',3)
+plot(1:100, 1:100, '--k',  1:100, 3*(1:100), '--k','LineWidth',3)
 
 p1 = plot(nan,nan,'o','color',[0, 0.4470, 0.7410],'MarkerFaceColor',[0, 0.4470, 0.7410],'MarkerSize',10);
 p2 = plot(nan,nan,'o', 'color', [0.8500, 0.3250, 0.0980],'MarkerFaceColor',[0.8500, 0.3250, 0.0980],'MarkerSize',10);
@@ -227,7 +227,7 @@ scatter(sar_wd_tmp, sar_sf_tmp)
 hold on
 scatter(sar_at_tmp, sar_sf_tmp)
 scatter(sar_mf_tmp, sar_sf_tmp)
-plot(1:100, 1:100, '--k',1:100, 4*(1:100), '--k', 'LineWidth',3)
+plot(1:100, 1:100, '--k',1:100, 3*(1:100), '--k', 'LineWidth',3)
 
 p1 = plot(nan,nan,'o','color',[0, 0.4470, 0.7410],'MarkerFaceColor',[0, 0.4470, 0.7410],'MarkerSize',10);
 p2 = plot(nan,nan,'o', 'color', [0.8500, 0.3250, 0.0980],'MarkerFaceColor',[0.8500, 0.3250, 0.0980],'MarkerSize',10);
@@ -254,7 +254,7 @@ scatter(sar_wd_tmp, sar_sf_tmp)
 hold on
 scatter(sar_at_tmp, sar_sf_tmp)
 scatter(sar_mf_tmp, sar_sf_tmp)
-plot(1:100, 1:100, '--k',1:100, 4*(1:100), '--k',  'LineWidth', 3)
+plot(1:100, 1:100, '--k',1:100, 3*(1:100), '--k',  'LineWidth', 3)
 
 p1 = plot(nan,nan,'o','color',[0, 0.4470, 0.7410],'MarkerFaceColor',[0, 0.4470, 0.7410],'MarkerSize',10);
 p2 = plot(nan,nan,'o', 'color', [0.8500, 0.3250, 0.0980],'MarkerFaceColor',[0.8500, 0.3250, 0.0980],'MarkerSize',10);
@@ -279,13 +279,13 @@ titles = {'Ground Truth','SF'};
 
 close all
 
-eeglabpath = '../..external/eeglab2019_1';
+eeglabpath = '../../external/eeglab2019_1';
 addpath(genpath(eeglabpath))
 
 aa = nan(30,3);
-for jj = 1:3
-    for kk = 1:2
-        for ii = 1:30
+for jj = 1:3 % high/med/low
+    for kk = 1:2 % gnd truth or sf
+        for ii = 1:30 % channel
             switch kk
                 case 1
                     aa(ii,jj) = rms(bandpass(x(:,ii,jj),[8 12],fs));
@@ -294,7 +294,7 @@ for jj = 1:3
             end
         end
         
-        topoplot(aa(:,jj),EEG.chanlocs,'whitebk','on');
+        topoplot(aa(:,jj),chanlocs,'whitebk','on');
         if kk==1
             c=colorbar; c.Label.String = 'alpha activity'; c.FontSize = 18;
         end
@@ -307,13 +307,12 @@ end
 rmpath(genpath(eeglabpath))
 
 %% find exemplary epochs
-names={'ts_high.pdf','ts_med.pdf','ts_low.pdf'};
-t = (1:200)'/fs;
+t = (1/fs : 1/fs : TRsl)';
 for ii = 1:3
     ratio = sar_sf(:,:,ii) ./ sar_wd(:,:,ii);
     ratio = ratio(:);
     [~,I] = max(ratio);
-    [r,c] = ind2sub([600 30], I);
+    [r,c] = ind2sub([Nsl 30], I);
     
     for jj = 1:5
         switch jj
@@ -334,8 +333,7 @@ for ii = 1:3
     xlabel('time (s)')
     pbaspect([1 1 1])
     hold off
-    set(gcf,'color','none')
-    export_fig(names{ii})
+    keyboard
     
 end
 

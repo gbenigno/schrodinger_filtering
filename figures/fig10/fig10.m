@@ -99,15 +99,13 @@ clearvars -except x x_spks spks trigs fs
 %%
 cd ../..
 mkdir tmp
+
 parfor ii = 1 : size(x,2)*size(x,3)*size(x,4)
     [ts,cv,sh] = ind2sub([size(x,2), size(x,3), size(x,4)], ii);
     sf = schrodingerFiltering(x(:,ts,cv,sh), 'fs', fs, 'trigs', trigs, 'passband', [30 700]);
     parsave(sprintf('tmp/%02u_%02u_%02u',ts,cv,sh), sf)
 end
-rmdir tmp s
 
-%%
-mkdir tmp
 sf_mat = nan(size(x));
 listing = dir('tmp/*.mat');
 for ii = 1:length(listing)
@@ -166,6 +164,10 @@ for sh = 1:3
         corr_err_mf(cv,sh) = abs(corr_mf - corr_gt);
     end
 end
+
+cd figures/fig10
+save('vars.mat')
+
 %%
 lbls = categorical({'w. spikes','MF','AT','WD','SF'});
 lbls = reordercats(lbls,{'w. spikes','MF','AT','WD','SF'});
