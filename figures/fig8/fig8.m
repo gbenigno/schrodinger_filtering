@@ -151,10 +151,11 @@ for jj = 1:length(listing)
 end
 sf = sf_mat;
 sf_rs = reshape(sf, [], Nsl, size(x,2), size(x,3));
-rmdir tmp s
 
 cd figures/fig8
 save('sf.mat','sf','sf_rs')
+
+rmdir ../../tmp s
 
 %%
 wd = nan(size(x));

@@ -29,9 +29,20 @@ sf = sf_cell;
 cd figures/fig7
 save('sf.mat','sf')
 clear sf_cell
-rmdir tmp s
+rmdir ../../tmp s
 
 %% just the 7 evoked channels
+load('../../realdata/data1/trigs.mat')
+aas = cell(30,1);
+raw = cell(30,1);
+for ch = 1:30
+    load(sprintf('../../realdata/data1/aas/ch%03u.mat',ch))
+    eval(sprintf('aas{ch} = ch%03u;',ch))
+    load(sprintf('../../realdata/data1/raw/ch%03u.mat',ch))
+    eval(sprintf('raw{ch} = ch%03u;',ch))
+    clear(sprintf('ch%03u',ch))
+end
+
 figure
 idxs = [14 15 16 18 19 26 27];
 os=0;
@@ -55,7 +66,7 @@ xlabel('time (s)','FontSize',32)
 nmbr=5;
 [wt,f]=cwt(aas{idxs(nmbr)}(tt),2048);
 
-figure(1)
+figure
 imagesc(tt/2048,f,  abs(wt))
 set(gca,'YDir','normal','yscale','log','fontsize',18)
 xlabel('time (s)')
@@ -65,7 +76,7 @@ caxis([0 100])
 
 [wt,f]=cwt(sf{idxs(nmbr)}(tt),2048);
 
-figure(2)
+figure
 imagesc(tt/2048,f,  abs(wt))
 set(gca,'YDir','normal','yscale','log','fontsize',18)
 xlabel('time (s)')
@@ -87,14 +98,14 @@ end
 P = 10*log10(pxx./ref1);
 P2 = 10*log10(pxx2./ref2);
 
-figure(1)
+figure
 semilogx(f,P,'k',f,P2,'r','linewidth',2)
 xlim([f(1),100])
 xlabel('frequency (Hz)')
 ylabel('power (dB)')
 legend('AAS','AAS+SF')
 
-figure(2)
+figure
 plot(tt/2048,aas{ch}(tt),'k',tt/2048,sf{ch}(tt),'r')
 ttt = find(tt>=2048*33 & tt<=2048*36);
 xlabel('time (s)')
