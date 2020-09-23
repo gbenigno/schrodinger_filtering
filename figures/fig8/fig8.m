@@ -153,7 +153,7 @@ sf = sf_mat;
 sf_rs = reshape(sf, [], Nsl, size(x,2), size(x,3));
 
 cd figures/fig8
-save('sf.mat','sf','sf_rs')
+save('vars.mat')
 
 rmdir ../../tmp s
 
