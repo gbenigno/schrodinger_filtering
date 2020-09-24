@@ -177,7 +177,6 @@ for sh = 1:3
         figure
         bar(lbls, [corr_err_spks(cv,sh), corr_err_mf(cv,sh), corr_err_at(cv,sh), corr_err_wd(cv,sh), corr_err_sf(cv,sh)])
         ylabel('correlation error')
-        set(gcf,'color','none')
         set(gca,'fontsize',18)
     end
 end
