@@ -16,10 +16,8 @@ Please cite the following article if you use this repository's code in any capac
 
 ## Data availability
 
-The data used in the Schrödinger filtering paper comprised a freely available online dataset available at https://fsl.fmrib.ox.ac.uk/eeglab/fmribplugin/#tutorial, a dataset for which permission is required (https://doi.org/10.1101/253047), and simulated data. The freely available real data are available in the `realdata` folder in csv files, which can be loaded in MATLAB using the `readmatrix` function. The first line of each csv file has details. This first line does not get loaded into MATLAB. The code used to generate the simulated data is provided in the `simulations` folder.
+The data used in the Schrödinger filtering paper comprises a freely available online dataset available at https://fsl.fmrib.ox.ac.uk/eeglab/fmribplugin/#tutorial, a dataset for which permission is required (https://doi.org/10.1101/253047), and simulated data. The code used to generate the simulated data is within the `figures` folder.
 
-## Future improvements
+## Contact
 
-1. This code was written with universality in mind. That is, it attempts to support a large subset of all possible datasets. If, as it is used on an increasing number of datasets, a need for greater generality becomes apparent, do not hesitate to contact the author (gbenigno@uwo.ca), and he will swiftly update the code accordingly. Also, feel free to collaborate by forking the repo.
-
-2. There are plans to convert all toolbox functions into the C language, beginning with the least efficient ones, while keeping the MATLAB wrapper for convenience. Thus, near-future improvements on this front can be expected. Feel free to contribute to this process through GitHub, or to make specific requests to the author (gbenigno@uwo.ca).
+Feedback is welcome: gbenigno@uwo.ca.
