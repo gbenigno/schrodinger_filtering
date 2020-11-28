@@ -12,7 +12,7 @@ All code in this repository was written in **MATLAB** by **Gabriel Benigno** exc
 
 Please cite the following article if you use this repository's code in any capacity:
 
-...
+Benigno GB, Menon RS, Serrai H. 2020. Schrödinger filtering: a precise EEG despiking technique for EEG-fMRI gradient artifact. NeuroImage. https://doi.org/10.1016/j.neuroimage.2020.117525.
 
 ## Data availability
 
