@@ -3,6 +3,27 @@ function ysf = schrodingerFiltering(y, options)
 % YSF = SCHRODINGERFILTERING(Y) performs Schrödinger filtering on input
 % vector Y and returns output vector YSF. 
 % 
+% YSF = SCHRODINGERFILTERING(Y, 'fs', fs, 'passband', [a b]) first detrends Y by
+% bandpass filtering from a Hz to b Hz. The sampling rate fs, in Hz,
+% must also be provided.
+% 
+% YSF = SCHRODINGERFILTERING(Y, 'fs', fs, 'mainsfreq', mainsfreq) first
+% notch-filters Y at mainsfreq +/- 1 Hz, 2*mainsfreq +/- 1 Hz, and
+% 3*mainsfreq +/- 1 Hz. The sampling rate fs, in Hz,
+% must also be provided.
+% 
+% YSF = SCHRODINGERFILTERING(Y, 'fs', fs, 'passband', [a b], 'mainsfreq',
+% mainsfreq) performs both preprocessing steps of detrending and notch
+% filtering.
+% 
+% YSF = SCHRODINGERFILTERING(Y, 'trigs', trigs) partitions Y into smaller
+% chunks for improved computational performance. trigs is a vector of slice
+% acquisition time indices. See below for specifications.
+% 
+% YSF = SCHRODINGERFILTERING(Y, ___ ) peforms some combination of the three
+% preprocessing steps listed above (bandpass filtering, notch filtering,
+% chunking).
+% 
 % Name-Value Pair Arguments
 % 'fs' - sampling rate (Hz). For use with 'bandpass' and 'mainsfreq'.
 % 'passband' - passband (Hz) for detrending. Requires also specifying 'fs'.
