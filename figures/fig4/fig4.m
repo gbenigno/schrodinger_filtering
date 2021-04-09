@@ -199,6 +199,8 @@ xlim([t(1) t(end)])
 set(gca,'ytick',[],'xtick',[])
 
 
+rmpath ../../external/linspecer
+
 %% --------------------------------------------------
 
 function [y_scsa, Nh, psi_n_nor, kappa, y_comps] = SCSA(y, h, dx, gm)
@@ -361,5 +363,3 @@ trigs = (1 : ppe : Nsl*ppe)' + ppb ;
 Ns = length(t);
 
 end
-
-rmpath ../../external/linspecer
