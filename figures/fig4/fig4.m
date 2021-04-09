@@ -1,5 +1,7 @@
 clearvars;clc
 
+addpath ../../external/linspecer
+
 %% spiky signal
 TRsl = 0.1; pausepercent = 0.2; stf = 700; nch = 1; Nsl = 0; fs=2048;
 [t, ~, ~, ~, Ns] = gradsim(fs, TRsl, Nsl, pausepercent, stf); % gradient artifact
@@ -359,3 +361,5 @@ trigs = (1 : ppe : Nsl*ppe)' + ppb ;
 Ns = length(t);
 
 end
+
+rmpath ../../external/linspecer
